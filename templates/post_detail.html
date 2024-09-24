@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{%block title %}{{ post.title }}{% endblock%}
+{%block content%}
+    <div class="card mb-4">
+        {% if post.image %}
+            <img src="{{url_for('static', filename='uploads/' + post.image) }}" class="card-img-top img-fluid"
+            alt="Post Image">
+        {% endif %}
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.content}}</p>
+            <p class="card-text"><small class="text-muted">Publicado por {{ post.author.username}}</small></p>
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary"> Voltar</a>
+{% endblock %}

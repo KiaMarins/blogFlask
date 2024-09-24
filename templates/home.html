@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{%block title%}Home{%endblock%}
+{%block content%}
+    <div class="row">
+        {%for post in posts%}
+        <div class="col-md-6 mb-4">
+            <div class="card" style="height: 100%;">
+                {%if post.image %}
+                 <img src="{{url_for('static', filename='uploads/' + post.image) }}"
+                 class="card-img-top img-fluid" alt="Post Image" style="height: 200px; object-fit: cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.content[:100]}}...</p>
+                    <a href="{{url_for('post_detail', post_id=post.id) }}" class="btn btn-primary">Ler mais</a>
+                    <p class="card-text"><small class="text-muted">Publicado por {{post.author.username}}</small></p>
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   {%endblock%}        
